@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CustomHashMap/CustomHashMap.iml" filepath="$PROJECT_DIR$/CustomHashMap/CustomHashMap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Design patterns/Design Patterns.iml" filepath="$PROJECT_DIR$/Design patterns/Design Patterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/LLDInterviewProblems.iml" filepath="$PROJECT_DIR$/LLDInterviewProblems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Design patterns/structural/Proxy pattern/Proxy pattern.iml" filepath="$PROJECT_DIR$/Design patterns/structural/Proxy pattern/Proxy pattern.iml" />
     </modules>
   </component>
 </project>
