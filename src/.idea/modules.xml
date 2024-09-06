@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Design patterns/Design Patterns.iml" filepath="$PROJECT_DIR$/Design patterns/Design Patterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/LLDInterviewProblems.iml" filepath="$PROJECT_DIR$/LLDInterviewProblems.iml" />
       <module fileurl="file://$PROJECT_DIR$/LoanCalculator/LoanCalculator.iml" filepath="$PROJECT_DIR$/LoanCalculator/LoanCalculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Logger/Logger.iml" filepath="$PROJECT_DIR$/Logger/Logger.iml" />
       <module fileurl="file://$PROJECT_DIR$/Design patterns/structural/Proxy pattern/Proxy pattern.iml" filepath="$PROJECT_DIR$/Design patterns/structural/Proxy pattern/Proxy pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/Design patterns/creational/Singleton/Singleton.iml" filepath="$PROJECT_DIR$/Design patterns/creational/Singleton/Singleton.iml" />
     </modules>
