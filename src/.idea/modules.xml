@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Design patterns/creational/Builder/Builder.iml" filepath="$PROJECT_DIR$/Design patterns/creational/Builder/Builder.iml" />
       <module fileurl="file://$PROJECT_DIR$/CustomHashMap/CustomHashMap.iml" filepath="$PROJECT_DIR$/CustomHashMap/CustomHashMap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Design patterns/behavioural/Decorator/Decorator.iml" filepath="$PROJECT_DIR$/Design patterns/behavioural/Decorator/Decorator.iml" />
       <module fileurl="file://$PROJECT_DIR$/Design patterns/Design Patterns.iml" filepath="$PROJECT_DIR$/Design patterns/Design Patterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/LLDInterviewProblems.iml" filepath="$PROJECT_DIR$/LLDInterviewProblems.iml" />
       <module fileurl="file://$PROJECT_DIR$/LoanCalculator/LoanCalculator.iml" filepath="$PROJECT_DIR$/LoanCalculator/LoanCalculator.iml" />
