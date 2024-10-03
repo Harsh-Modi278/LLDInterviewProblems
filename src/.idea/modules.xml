@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/LLDInterviewProblems.iml" filepath="$PROJECT_DIR$/LLDInterviewProblems.iml" />
       <module fileurl="file://$PROJECT_DIR$/LoanCalculator/LoanCalculator.iml" filepath="$PROJECT_DIR$/LoanCalculator/LoanCalculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/Logger/Logger.iml" filepath="$PROJECT_DIR$/Logger/Logger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Movie ticket booking/Movie ticket booking.iml" filepath="$PROJECT_DIR$/Movie ticket booking/Movie ticket booking.iml" />
       <module fileurl="file://$PROJECT_DIR$/Design patterns/structural/Proxy pattern/Proxy pattern.iml" filepath="$PROJECT_DIR$/Design patterns/structural/Proxy pattern/Proxy pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/Design patterns/creational/Singleton/Singleton.iml" filepath="$PROJECT_DIR$/Design patterns/creational/Singleton/Singleton.iml" />
       <module fileurl="file://$PROJECT_DIR$/messaging-queue-pub-sub/messaging-queue-pub-sub.iml" filepath="$PROJECT_DIR$/messaging-queue-pub-sub/messaging-queue-pub-sub.iml" />
