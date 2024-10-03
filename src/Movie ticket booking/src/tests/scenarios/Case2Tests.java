@@ -4,9 +4,12 @@ import models.*;
 import org.junit.Assert;
 import tests.scenarios.util.CustomComparator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
-public class Case1Tests extends BaseTest{
+public class Case2Tests extends BaseTest{
     public void setUp() {
         setupControllers(10, 0);
     }
@@ -37,14 +40,12 @@ public class Case1Tests extends BaseTest{
         u1SelectedSeats.add(screen1Seats.get(3));
 
         final Booking booking = bookingController.createBooking(user1, show.getId(), u1SelectedSeats);
-        paymentsController.paymentSuccess(booking.getId(), user1);
+        paymentsController.paymentFailed(booking.getId(), user1);
 
         final List<Seat> u2AvailableSeats = showController.getAvailableSeats(show.getId());
         u2AvailableSeats.sort(seatComparator);
 
-        // Validate that u2 seats has all screen seats except the ones already booked by u1
         final List<Seat> u2AvailableSeatsExpected = new ArrayList<>(screen1Seats);
-        u2AvailableSeatsExpected.removeAll(u1SelectedSeats);
         Assert.assertEquals(u2AvailableSeatsExpected, u2AvailableSeats);
     }
 }

@@ -1,12 +1,17 @@
 package tests.scenarios;
 
+import exceptions.SeatPermanentlyUnavailableException;
+import exceptions.SeatTemporaryUnavailableException;
 import models.*;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import tests.scenarios.util.CustomComparator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-public class Case1Tests extends BaseTest{
+public class Case3Tests extends BaseTest {
     public void setUp() {
         setupControllers(10, 0);
     }
@@ -36,15 +41,22 @@ public class Case1Tests extends BaseTest{
         u1SelectedSeats.add(screen1Seats.get(2));
         u1SelectedSeats.add(screen1Seats.get(3));
 
+        List<Seat> u2SelectedSeats = new ArrayList<>();
+        u1SelectedSeats.add(screen1Seats.get(3));
+        u1SelectedSeats.add(screen1Seats.get(4));
+        u1SelectedSeats.add(screen1Seats.get(5));
+        u1SelectedSeats.add(screen1Seats.get(6));
+
         final Booking booking = bookingController.createBooking(user1, show.getId(), u1SelectedSeats);
+
+        Assert.assertThrows(SeatTemporaryUnavailableException.class, () -> {
+            final Booking u2Booking = bookingController.createBooking(user2, show.getId(), u2SelectedSeats);
+        });
+
         paymentsController.paymentSuccess(booking.getId(), user1);
 
-        final List<Seat> u2AvailableSeats = showController.getAvailableSeats(show.getId());
-        u2AvailableSeats.sort(seatComparator);
-
-        // Validate that u2 seats has all screen seats except the ones already booked by u1
-        final List<Seat> u2AvailableSeatsExpected = new ArrayList<>(screen1Seats);
-        u2AvailableSeatsExpected.removeAll(u1SelectedSeats);
-        Assert.assertEquals(u2AvailableSeatsExpected, u2AvailableSeats);
+        Assert.assertThrows(SeatPermanentlyUnavailableException.class, () -> {
+            final Booking u2Booking = bookingController.createBooking(user2, show.getId(), u2SelectedSeats);
+        });
     }
 }
