@@ -75,4 +75,23 @@ public class Buffer {
  *   -  Without backpressure, producers can generate data faster than consumers can process,
  *      causing unbounded memory growth or system crashes.
  *   -  Backpressure ensures the system self-regulates: producers slow down naturally when the queue is full.
+ *
+ * 5. Happens-Before" Guarantee provided by the BlockingQueue
+ *   - When one thread puts an element in the queue and another thread takes it,
+ *     the changes made by the producer are visible to the consumer.
+ *     This is due to proper memory synchronization
+ *
+ * 6. BlockingQueue uses Two-Condition Algorithm
+ *    - Internally, the queue uses two conditions:
+ *      1. notFull (for producers waiting to add)
+        2. notEmpty (for consumers waiting to remove)
+ *     This ensures efficient signaling and avoids unnecessary wakeups
+ *
+ * 7. What to say during interview:
+ *   - "BlockingQueue is a thread-safe queue that supports blocking operations
+ *      for both producers and consumers.
+ *      Internally, it uses locks and condition variables to ensure that producers block
+ *      when the queue is full and consumers block when the queue is empty.
+ *      All operations are atomic and provide proper memory visibility between threads,
+ *      so you don't have to use explicit synchronization or worry about data races."
  */
