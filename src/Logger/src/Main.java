@@ -41,71 +41,56 @@ Q: How to Explain This in an Interview
  */
 
 /**
- * +-------------------+
- * |   LogLevel        |  <<enum>>
- * +-------------------+
- * | +INFO             |
- * | +ERROR            |
- * | +DEBUG            |
- * +-------------------+
  *
- * +---------------------------+
- * |   LoggerObserver          |  <<interface>>
- * +---------------------------+
- * | +log(message: String):void|
- * +---------------------------+
- *            ^
- *            |
- *   -----------------------
- *   |                     |
- * +-------------------+  +-------------------+
- * | ConsoleLogger     |  | FileLogger        |
- * +-------------------+  +-------------------+
- * | +log(message):void|  | -filename: String |
- * |                   |  | +log(message):void|
- * +-------------------+  +-------------------+
+ *          +-------------------+         +----------------------+
+ *         |      Main         |         |   LogType <<enum>>   |
+ *         +-------------------+         +----------------------+
+ *         | +main(args): void |         | INFO                 |
+ *         +-------------------+         | DEBUG                |
+ *         | uses                | ERROR                |
+ * v                     +----------------------+
+ *         +-----------------------+
+ *         |   LoggerManager       |
+ *         +-----------------------+
+ *         | -loggerChain:         |
+ *         |   AbstractLogger      |
+ *         | -observable:          |
+ *         |   LoggerObservable    |
+ *         +-----------------------+
+ *         | +addObserver(...)     |
+ *         | +getLoggerChain()     |
+ *         +-----------------------+
+ *         | 1
+ *         | composition
+ *         v
+ *           +---------------------------+     1      *    +---------------------------+
+ *         | <<abstract>>              |<>---------o-----|   LoggerObservable        |
+ *         |   AbstractLogger          | composition     |---------------------------|
+ *         +---------------------------+ association    | -logTypeToObservers:      |
+ *         | -logLevel: LogType        |                |   Map<LogType,List<...>>  |
+ *         | -nextLogger: AbstractLogger|               +---------------------------+
+ *         | -observable: LoggerObservable|             | +addObserver(...)         |
+ *         +---------------------------+                | +notifyAll(...)           |
+ *         | +setNextLogger(...)       |                +---------------------------+
+ *         | +log(...)                 |                      | 1
+ *         | #write(...)               |                      | aggregation
+ *         +---------------------------+                      | *
+ *         ^                                                  v
+ *         | inheritance                                +---------------------------+
+ *         +---------+-----------+-----------+          | <<interface>>             |
+ *         |         |           |           |          |   LoggerObserver          |
+ *         +-----------+ +-----------+ +-----------     +---------------------------+
+ *         |InfoLogger | |ErrorLogger| |DebugLogger|    |   +log(message): void       |
+ *         +-----------+ +-----------+ +-----------     +---------------------------+
+ *         | +write()  | | +write()  | | +write()  |        ^             ^
+ *         +-----------+ +-----------+ +-----------+        | realization | realization
+ *                                        | FileLogger      |                | ConsoleLogger     |
+ *                                        +-------------------+              +-------------------+
+ *                                        | +log(message):void|              | +log(message):void|
+ *                                        +-------------------+              +-------------------+
  *
- * +-----------------------------+
- * |   LoggerSubject             |
- * +-----------------------------+
- * | -observersMap: Map<LogLevel,|
- * |   List<LoggerObserver>>     |
- * +-----------------------------+
- * | +addObserver(level: LogLevel,|
- * |   observer: LoggerObserver):void|
- * | +notifyObservers(level: LogLevel,|
- * |   message: String):void         |
- * +-----------------------------+
  *
- * +-----------------------------+
- * |   AbstractLogger            |  <<abstract>>
- * +-----------------------------+
- * | -level: LogLevel            |
- * | -nextLogger: AbstractLogger |
- * | -subject: LoggerSubject     |
- * +-----------------------------+
- * | +setNextLogger(next: AbstractLogger):void|
- * | +log(level: LogLevel, message: String):void|
- * | #write(message: String):void (abstract)    |
- * +-----------------------------+
- *            ^
- *            |
- *   -------------------------------
- *   |             |               |
- * +------------+ +------------+ +------------+
- * | InfoLogger | | ErrorLogger| | DebugLogger|
- * +------------+ +------------+ +------------+
- * | +write()   | | +write()   | | +write()   |
- * +------------+ +------------+ +------------+
  *
- * +-----------------------------+
- * |   LoggerManager             |
- * +-----------------------------+
- * | -subject: LoggerSubject     |
- * | -loggerChain: AbstractLogger|
- * +-----------------------------+
- * | +addObserver(level: LogLevel,|
- * |   observer: LoggerObserver):void|
- * | +log(level: LogLevel, message: String):void|
- * +-----------------------------+
+ *
+ *
  */
