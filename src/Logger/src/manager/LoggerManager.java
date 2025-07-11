@@ -8,7 +8,11 @@ public class LoggerManager {
     private final AbstractLogger loggerChain;
     private final LoggerObservable observable = new LoggerObservable("my observable");
 
-    public LoggerManager() {
+    private static class SingletonHelper {
+        private static final LoggerManager INSTANCE = new LoggerManager();
+    }
+
+    private LoggerManager() {
         AbstractLogger infoLogger = new InfoLogger(observable);
         AbstractLogger errorLogger = new ErrorLogger(observable);
         AbstractLogger debugLogger = new DebugLogger(observable);
@@ -18,6 +22,10 @@ public class LoggerManager {
         errorLogger.setNextLogger(debugLogger);
 
         this.loggerChain = infoLogger;
+    }
+
+    public static LoggerManager getInstance() {
+        return SingletonHelper.INSTANCE;
     }
 
     public AbstractLogger getLoggerChain() {

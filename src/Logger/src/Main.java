@@ -5,7 +5,7 @@ import observer.impl.FileLogger;
 
 public class Main {
     public static void main(String[] args) {
-        LoggerManager loggerManager = new LoggerManager();
+        LoggerManager loggerManager = LoggerManager.getInstance();
 
         // Register observers for each level
         ConsoleLogger consoleLogger = new ConsoleLogger();
