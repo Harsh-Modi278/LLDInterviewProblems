@@ -68,4 +68,22 @@ public class ThreadSafeCache<Key, Value> {
  *  the state of the cache, eviction policy, and storage can become inconsistent.
  *  For example, two threads could both see that the cache is not full, both add new keys,
  *  and temporarily exceed the intended capacity or corrupt the LRU order.
+ *
+ *  Interview explanation:
+ *  "In my implementation, I used ConcurrentHashMap for thread-safe storage and
+ *  ConcurrentLinkedDeque to track access order for LRU eviction.
+ *
+ *  While both collections are thread-safe for individual operations,
+ *  I recognized that compound actions—like updating the cache and the access order together—
+ *  require extra coordination.
+ *
+ *  To ensure correctness, I used a ReentrantLock to synchronize these compound operations,
+ *  so the cache size and order remain consistent even under high concurrency.
+ *  This design balances performance (by allowing concurrent reads/writes where possible)
+ *  with correctness (by locking only when necessary), and keeps complexity manageable by
+ *  using well-tested Java concurrency primitives.
+ *
+ *  Overall, my approach demonstrates an understanding of the real-world challenges
+ *  of concurrent data structure design, the tradeoffs involved,
+ *  and the importance of coordinating operations across multiple thread-safe collections."
  */
